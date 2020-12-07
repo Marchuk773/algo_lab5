@@ -1,3 +1,6 @@
+from utils import read_from_file, write_to_file
+
+
 def naive_search(string: str, substring: str, case_insensitive: bool = False) -> list[int]:
     occurrences: list[int] = []
     if case_insensitive:
@@ -12,11 +15,12 @@ def naive_search(string: str, substring: str, case_insensitive: bool = False) ->
 
 
 if __name__ == '__main__':
-    text: str = 'AABAACAADAABAAABAA'
-    query: str = 'AABA'
+    text, query = read_from_file('files/file2.in')
+    result = naive_search(text, query)
+    print(result)
+    write_to_file(result)
     
-    print(naive_search(text, query))
-    
+    # Regex implementation
     import re
     
-    print([match.span()[0] for match in list(re.finditer(query, text))])
+    print([match.span()[0] for match in tuple(re.finditer(query, text))])
