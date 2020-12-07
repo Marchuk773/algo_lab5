@@ -1,8 +1,7 @@
-def naive_search(string: str, substring: str, case_insensitive: bool = False) -> list:
-    occurrences: list = []
+def naive_search(string: str, substring: str, case_insensitive: bool = False) -> list[int]:
+    occurrences: list[int] = []
     if case_insensitive:
-        string = string.lower()
-        substring = substring.lower()
+        string, substring = map(str.lower, (string, substring))
     for i in range(len(string) - len(substring) + 1):
         for j in range(len(substring)):
             if string[i + j] != substring[j]:
